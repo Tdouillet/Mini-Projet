@@ -17,6 +17,7 @@
       <itemPath>src/TOOLS/Common/Conf/Common_cfg.h</itemPath>
       <itemPath>src/TOOLS/Common/Core/Common.h</itemPath>
       <itemPath>src/TOOLS/Common/Port/Common_pt.h</itemPath>
+      <itemPath>src/HARDWARE/GPIO/GPIO.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -41,6 +42,8 @@
       <itemPath>src/TOOLS/Common/Core/Common.c</itemPath>
       <itemPath>src/TOOLS/Common/Port/Common_pt.c</itemPath>
       <itemPath>src/DRIVERS/LCD/Conf/LCD_cfg.c</itemPath>
+      <itemPath>src/APPLICATION/AppManager.c</itemPath>
+      <itemPath>src/HARDWARE/GPIO/GPIO.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -98,7 +101,7 @@
         <property key="define-macros" value=""/>
         <property key="disable-optimizations" value="true"/>
         <property key="extra-include-directories"
-                  value="src\DRIVERS\LCD\Conf;src\DRIVERS\LCD\Core;src\HARDWARE\ADC\Conf;src\HARDWARE\ADC\Core;src\HARDWARE\CLOCK\Conf;src\HARDWARE\CLOCK\Core;src\HARDWARE\EUSART;src\HARDWARE\I2CM;src\HARDWARE\ISR;src\HARDWARE\TIMER;src\TOOLS\Common\Conf;src\TOOLS\Common\Core;src\TOOLS\Common\Port"/>
+                  value="src\DRIVERS\LCD\Conf;src\DRIVERS\LCD\Core;src\HARDWARE\ADC\Conf;src\HARDWARE\ADC\Core;src\HARDWARE\CLOCK\Conf;src\HARDWARE\CLOCK\Core;src\HARDWARE\EUSART;src\HARDWARE\I2CM;src\HARDWARE\ISR;src\HARDWARE\TIMER;src\TOOLS\Common\Conf;src\TOOLS\Common\Core;src\TOOLS\Common\Port;src\HARDWARE\GPIO"/>
         <property key="favor-optimization-for" value="-speed,+space"/>
         <property key="garbage-collect-data" value="true"/>
         <property key="garbage-collect-functions" value="true"/>
@@ -126,7 +129,6 @@
       </HI-TECH-COMP>
       <HI-TECH-LINK>
         <property key="additional-options-checksum" value=""/>
-        <property key="additional-options-checksumAVR" value=""/>
         <property key="additional-options-code-offset" value=""/>
         <property key="additional-options-command-line" value=""/>
         <property key="additional-options-errata" value=""/>
@@ -255,7 +257,6 @@
       <pkob4hybrid>
         <property key="AutoSelectMemRanges" value="auto"/>
         <property key="Freeze Peripherals" value="true"/>
-        <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UpdateOptions"
@@ -269,7 +270,6 @@
         <property key="debugoptions.reset-behaviour" value="Main"/>
         <property key="debugoptions.simultaneous.debug" value="false"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
-        <property key="event.recorder.debugger.behavior" value="Running"/>
         <property key="event.recorder.enabled" value="false"/>
         <property key="event.recorder.scvd.files" value=""/>
         <property key="freeze.timers" value="false"/>
@@ -302,7 +302,6 @@
         <property key="programoptions.program.otpconfig" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
-        <property key="programoptions.smart.program" value="When debugging only"/>
         <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
         <property key="toolpack.updateoptions"
                   value="toolpack.updateoptions.uselatestoolpack"/>

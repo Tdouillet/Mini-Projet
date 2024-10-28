@@ -64,71 +64,60 @@ extern void putch(char s8Data);
 /* PRIVATE FUNCTION DEFINITIONS                                                                                       */
 /**********************************************************************************************************************/
 #if(CMN_ENABLE_PRINTF == true)
-extern void putch(char s8Data)
-{
-  EUSART_vidSendChar(s8Data, 10);
+
+extern void putch(char s8Data) {
+    EUSART_vidSendChar(s8Data, 10);
 }
 #endif //CMN_ENABLE_PRINTF
 
 
 /**********************************************************************************************************************/
 /* PUBLIC FUNCTION DEFINITIONS                                                                                        */
+
 /**********************************************************************************************************************/
-void CMN_vidErrorLedInit(void)
-{
+void CMN_vidErrorLedInit(void) {
 #if(CMN_ENABLE_ERROR_LED == true)
-  TRISAbits.TRISA7 = false;
+    TRISAbits.TRISA7 = false;
 #endif //CMN_ENABLE_ERROR_LED
 }
 
-
 /*--------------------------------------------------------------------------------------------------------------------*/
-void CMN_vidErrorLedSet(void)
-{
+void CMN_vidErrorLedSet(void) {
 #if(CMN_ENABLE_ERROR_LED == true)
-  LATAbits.LATA7 = true;
+    LATAbits.LATA7 = true;
 #endif //CMN_ENABLE_ERROR_LED
 }
 
-
 /*--------------------------------------------------------------------------------------------------------------------*/
-void CMN_vidErrorLedUnset(void)
-{
+void CMN_vidErrorLedUnset(void) {
 #if(CMN_ENABLE_ERROR_LED == true)
-  LATAbits.LATA7 = false;
+    LATAbits.LATA7 = false;
 #endif //CMN_ENABLE_ERROR_LED
 }
 
-
 /*--------------------------------------------------------------------------------------------------------------------*/
-void CMN_vidPortDelayMs(const uint32_t ku32DelayMs)
-{
-  uint32_t u32DelayIdx = 0;
+void CMN_vidPortDelayMs(const uint32_t ku32DelayMs) {
+    uint32_t u32DelayIdx = 0;
 
-  for(u32DelayIdx = 0; u32DelayIdx < ku32DelayMs; u32DelayIdx++)
-  {
-    __delay_ms(1);
-  }
+    for (u32DelayIdx = 0; u32DelayIdx < ku32DelayMs; u32DelayIdx++) {
+        __delay_ms(1);
+    }
 }
 
-
 /*--------------------------------------------------------------------------------------------------------------------*/
-void CMN_vidPortEnableIsr(void)
-{
-  ISR_GlobalInterruptEnable();
-  ISR_PeripheralInterruptEnable();
-//  INTCONbits.GIE_GIEH  = true;
-//  INTCONbits.PEIE_GIEL = true;
+void CMN_vidPortEnableIsr(void) {
+    ISR_GlobalInterruptEnable();
+    ISR_PeripheralInterruptEnable();
+    //  INTCONbits.GIE_GIEH  = true;
+    //  INTCONbits.PEIE_GIEL = true;
 }
 
-
 /*--------------------------------------------------------------------------------------------------------------------*/
-void CMN_vidPortDisableIsr(void)
-{
-  ISR_GlobalInterruptDisable();
-  ISR_PeripheralInterruptDisable();
-//  INTCONbits.GIE_GIEH  = false;
-//  INTCONbits.PEIE_GIEL = false;
+void CMN_vidPortDisableIsr(void) {
+    ISR_GlobalInterruptDisable();
+    ISR_PeripheralInterruptDisable();
+    //  INTCONbits.GIE_GIEH  = false;
+    //  INTCONbits.PEIE_GIEL = false;
 }
 
 

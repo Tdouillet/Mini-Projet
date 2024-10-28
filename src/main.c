@@ -38,6 +38,7 @@
 #include "TIMER.h"
 #include "EUSART.h"
 #include "I2CM.h"
+#include "GPIO.h"
 
 // Add the required includes for the hardware modules here...
 
@@ -97,7 +98,8 @@ void main(void)
 
   //Variable declaration
   uint16_t adc_value;
-  uint16_t const* adc_value_ptr = &adc_value;
+  uint16_t * adc_value_ptr = &adc_value;
+  ADC_tenuStatus estatus;
     
   // Enable the Global Interrupts
   ISR_GlobalInterruptEnable();
@@ -116,6 +118,7 @@ void main(void)
   ADC_vidInitialize();
   TIM0_vidInitialize();
   I2CM_vidInitalize();
+  GPIO_Init();
 
   // Add your initialization function here for the hardware modules...
 
@@ -137,8 +140,12 @@ void main(void)
   // Main program loop:
   while(true)
   {
-      ADC_enuGetRawValue(adc_value_ptr,ADC_TIMEOUT);
+    
+      estatus = ADC_enuGetRawValue(adc_value_ptr,ADC_TIMEOUT);
+      CMN_systemPrintf("%d",adc_value);
       Nop();
+      
+      
   }
 
   // We should never reach this code part:
