@@ -7,7 +7,18 @@
 
 
 #include <xc.h>
+#include "GPIO.h"
 
-void InitApp(void) {
+void LED_Callback_Function(void){
+    
+    LED_Toggle();
+}
+
+void App_Init(void) {
+    
+    (void)LED_SetInterruptHandler(LED_Callback_Function);
+    GPIO_Init();
     
 }
+
+

@@ -76,19 +76,4 @@ extern "C" {
 
 #endif	/* XC_HEADER_TEMPLATE_H */
 
-#include <stdbool.h>
-
-typedef void(*LED_Callback)(void);
-
-void GPIO_ClearIntFlags(void);
-
-void LED_SetLow(void);
-
-bool LED_SetInterruptHandler( LED_Callback Callback_function);
-
-void GPIO_Init(void);
-
-void LED_SetHigh(void);
-
-void LED_Toggle();
-
+void App_Init(void);

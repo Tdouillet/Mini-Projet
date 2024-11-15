@@ -39,6 +39,7 @@
 #include "EUSART.h"
 #include "I2CM.h"
 #include "GPIO.h"
+#include "AppManager.h"
 
 // Add the required includes for the hardware modules here...
 
@@ -119,6 +120,7 @@ void main(void)
   TIM0_vidInitialize();
   I2CM_vidInitalize();
   GPIO_Init();
+  App_Init();
 
   // Add your initialization function here for the hardware modules...
 
@@ -141,9 +143,9 @@ void main(void)
   while(true)
   {
     
-      estatus = ADC_enuGetRawValue(adc_value_ptr,ADC_TIMEOUT);
-      CMN_systemPrintf("%d",adc_value);
-      Nop();
+//      estatus = ADC_enuGetRawValue(adc_value_ptr,ADC_TIMEOUT);
+//      CMN_systemPrintf("%d",adc_value);
+//      Nop();
       
       
   }

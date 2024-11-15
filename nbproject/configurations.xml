@@ -101,7 +101,7 @@
         <property key="define-macros" value=""/>
         <property key="disable-optimizations" value="true"/>
         <property key="extra-include-directories"
-                  value="src\DRIVERS\LCD\Conf;src\DRIVERS\LCD\Core;src\HARDWARE\ADC\Conf;src\HARDWARE\ADC\Core;src\HARDWARE\CLOCK\Conf;src\HARDWARE\CLOCK\Core;src\HARDWARE\EUSART;src\HARDWARE\I2CM;src\HARDWARE\ISR;src\HARDWARE\TIMER;src\TOOLS\Common\Conf;src\TOOLS\Common\Core;src\TOOLS\Common\Port;src\HARDWARE\GPIO"/>
+                  value="src\DRIVERS\LCD\Conf;src\DRIVERS\LCD\Core;src\HARDWARE\ADC\Conf;src\HARDWARE\ADC\Core;src\HARDWARE\CLOCK\Conf;src\HARDWARE\CLOCK\Core;src\HARDWARE\EUSART;src\HARDWARE\GPIO;src\HARDWARE\I2CM;src\HARDWARE\ISR;src\HARDWARE\TIMER;src\APPLICATION;src\TOOLS\Common\Conf;src\TOOLS\Common\Core;src\TOOLS\Common\Port"/>
         <property key="favor-optimization-for" value="-speed,+space"/>
         <property key="garbage-collect-data" value="true"/>
         <property key="garbage-collect-functions" value="true"/>
@@ -110,8 +110,8 @@
         <property key="operation-mode" value="free"/>
         <property key="opt-xc8-compiler-strict_ansi" value="false"/>
         <property key="optimization-assembler" value="true"/>
-        <property key="optimization-assembler-files" value="false"/>
-        <property key="optimization-debug" value="true"/>
+        <property key="optimization-assembler-files" value="true"/>
+        <property key="optimization-debug" value="false"/>
         <property key="optimization-invariant-enable" value="false"/>
         <property key="optimization-invariant-value" value="16"/>
         <property key="optimization-level" value="-O0"/>
