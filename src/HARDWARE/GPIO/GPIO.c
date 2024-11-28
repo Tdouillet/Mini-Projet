@@ -1,33 +1,66 @@
-/*
- * File:   GPIO.c
- * Author: thiba
+/**
+ ***********************************************************************************************************************
+ * Company: Esme Sudria
+ * Project: Projet Esme
  *
- * Created on 25 octobre 2024, 15:49
+ ***********************************************************************************************************************
+ * @file      GPIO.c
+ *
+ * @author    <yourName>
+ * @date      <date>
+ *
+ * @version   0.0.0
+ *
+ * @brief     <you can add a description of your module here, otherwise please delete this line>
+ * @details   <you can add more details of your module here, otherwise please delete this line>
+ *
+ * @remark    Coding Language: C
+ *
+ * @copyright Copyright (c) 2024 This software is used for education proposal
+ *
+ ***********************************************************************************************************************
  */
 
 
-#include <xc.h>
-#include "GPIO.h"
-#include "ISR.h"
 
-//void Init_GPIO(uint16_t *gpio_address,signal signal_mode,IO io_mode){
-//    
-//    *gpio_address = 1;
-//    TRISBbits.TRISB3 = 1;
-//    
-//}
+/**********************************************************************************************************************/
+/* INCLUDE FILES                                                                                                      */
+/**********************************************************************************************************************/
+#include <xc.h>
+#include "ISR.h"
+#include "GPIO.h"
+
+
+/**********************************************************************************************************************/
+/* CONSTANTS, MACROS                                                                                                  */
+/**********************************************************************************************************************/
+
+
+
+/**********************************************************************************************************************/
+/* TYPES                                                                                                              */
+/**********************************************************************************************************************/
+
+
+
+/**********************************************************************************************************************/
+/* PRIVATE VARIABLES                                                                                                  */
+/**********************************************************************************************************************/
 
 static LED_Callback LED_Callback_Function = NULL;
 
-void GPIO_ClearIntFlags(void){
-    
-    IOCBFbits.IOCBF4 = 0;    
-    
-}
+/**********************************************************************************************************************/
+/* PRIVATE FUNCTION PROTOTYPES                                                                                       */
+/**********************************************************************************************************************/
+
+
+
+/**********************************************************************************************************************/
+/* PRIVATE FUNCTION DEFINITIONS                                                                                       */
+/**********************************************************************************************************************/
 
 static bool GPIO_Callback(void){
     
-    Nop();
     if (PIR0bits.IOCIF == 1){
         if (LED_Callback_Function != NULL){
             LED_Callback_Function();
@@ -38,35 +71,22 @@ static bool GPIO_Callback(void){
     return true;
 }
 
+/**********************************************************************************************************************/
+/* PUBLIC FUNCTION DEFINITIONS                                                                                        */
+/**********************************************************************************************************************/
+
+void GPIO_ClearIntFlags(void){
+    
+    IOCBFbits.IOCBF4 = 0;    
+    
+}
+
 void LED_SetLow(void){
     
     LATAbits.LATA4 = 0; 
 };
 
-void GPIO_Init(void){
-    
-    (void)ISR_bRegisterIsrCbk(ISR_ePERIPHERAL_INPUT_GPIO, GPIO_Callback);
-    
-    //LED configuration
-    ANSELAbits.ANSELA4 = 0;
-    TRISAbits.TRISA4 = 0;
-    
-    //Button configuration
-    ANSELBbits.ANSELB4 = 0;
-    TRISBbits.TRISB4 = 1;
-    
-    //Interruption configuration
-    PIE0bits.IOCIE = 1; 
-    
-    //Set interrupt on falling and rising edge
-    IOCBPbits.IOCBP4 = 1;
-    IOCBNbits.IOCBN4 = 1;
-    
-    IOCBFbits.IOCBF4 = 0;
-    
-    LED_SetLow();  
-    
-}
+
 
 void LED_SetHigh(void){
     
@@ -97,5 +117,48 @@ bool LED_SetInterruptHandler(const LED_Callback Callback_function){
     return handlerSet;
     
 }
+
+void GPIO_Init(void){
+    
+    (void)ISR_bRegisterIsrCbk(ISR_ePERIPHERAL_INPUT_GPIO, GPIO_Callback);
+    
+    //LED configuration
+    ANSELAbits.ANSELA4 = 0;
+    TRISAbits.TRISA4 = 0;
+    
+    //Button configuration
+    ANSELBbits.ANSELB4 = 0;
+    TRISBbits.TRISB4 = 1;
+    
+    //Interruption configuration
+    PIE0bits.IOCIE = 1; 
+    
+    //Set interrupt on falling and rising edge
+    IOCBPbits.IOCBP4 = 1;
+    IOCBNbits.IOCBN4 = 1;
+    
+    IOCBFbits.IOCBF4 = 0;
+    
+    LED_SetLow();  
+    
+}
+
+GPIO_state GPIO_GetState(void){
+    
+    if (LATAbits.LATA4 == 0){
+        
+        return GPIO_IDLE_state;
+        
+    } else {
+        
+        return GPIO_MEASURE_state;
+        
+    }
+    
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+
 
 

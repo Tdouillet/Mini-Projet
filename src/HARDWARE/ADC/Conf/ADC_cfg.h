@@ -36,7 +36,7 @@
 /**
  * @brief Defines whether the ADC is connected to the potentiometer (RA0 pin) or in the RB3 pin
  */
-#define ADC_CONFIG_USE_POTENTIOMETER                        false
+#define ADC_CONFIG_USE_POTENTIOMETER                        true
 
 
 /*--------------------------------------------------------------------------------------------------------------------*/

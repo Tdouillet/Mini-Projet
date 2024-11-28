@@ -34,12 +34,11 @@
 /*********************************/
 #include "ISR.h"
 #include "CLOCK.h"
-#include "ADC.h"
 #include "TIMER.h"
 #include "EUSART.h"
 #include "I2CM.h"
 #include "GPIO.h"
-#include "AppManager.h"
+#include "ADC.h"
 
 // Add the required includes for the hardware modules here...
 
@@ -47,6 +46,7 @@
 /* DRIVER INCLUDES               */
 /*********************************/
 #include "LCD.h"
+#include "MCP9700.h"
 
 // Add the required includes for the driver modules here...
 
@@ -54,13 +54,11 @@
 /* APPLICATION INCLUDES          */
 /*********************************/
 // Add the required includes for the application modules here...
-
+#include "AppManager.h"
 
 /**********************************************************************************************************************/
 /* CONSTANTS, MACROS                                                                                                  */
 /**********************************************************************************************************************/
-
-#define ADC_TIMEOUT 1000
 
 /**********************************************************************************************************************/
 /* TYPES                                                                                                              */
@@ -77,7 +75,7 @@
 /**********************************************************************************************************************/
 /* PRIVATE FUNCTIONS PROTOTYPES                                                                                       */
 /**********************************************************************************************************************/
-
+int16_t temperature = 0;
 
 
 /**********************************************************************************************************************/
@@ -98,9 +96,8 @@ void main(void)
   #pragma config LVP = ON
 
   //Variable declaration
-  uint16_t adc_value;
-  uint16_t * adc_value_ptr = &adc_value;
-  ADC_tenuStatus estatus;
+    uint16_t adc_value;
+    uint16_t * adc_value_ptr = &adc_value;
     
   // Enable the Global Interrupts
   ISR_GlobalInterruptEnable();
@@ -116,11 +113,11 @@ void main(void)
   /*********************************/
   CLOCK_vidInitialize();
   EUSART_vidInitialize();
-  ADC_vidInitialize();
   TIM0_vidInitialize();
   I2CM_vidInitalize();
+  ADC_vidInitialize();
   GPIO_Init();
-  App_Init();
+  
 
   // Add your initialization function here for the hardware modules...
 
@@ -135,19 +132,20 @@ void main(void)
   /* APPLICATION INITIALIZATIONS   */
   /*********************************/
   // Add your initialization function here for the application modules...
-
+  App_Init();
+  
   // End of the Init:
   CMN_vidEndInit();
 
   // Main program loop:
   while(true)
   {
-    
-//      estatus = ADC_enuGetRawValue(adc_value_ptr,ADC_TIMEOUT);
-//      CMN_systemPrintf("%d",adc_value);
-//      Nop();
-      
-      
+   
+      temperature = GetTemperature();
+      ADC_enuGetRawValue(adc_value_ptr,100);
+      CMN_systemPrintf("Temp = %d\r\n",temperature);
+      Nop();
+         
   }
 
   // We should never reach this code part:
