@@ -47,6 +47,7 @@
 /*********************************/
 #include "LCD.h"
 #include "MCP9700.h"
+#include "SERP.h"
 
 // Add the required includes for the driver modules here...
 
@@ -125,6 +126,7 @@ void main(void)
   /* DRIVER INITIALIZATIONS        */
   /*********************************/
   LCD_vidInitialize();
+  SERP_Init();
 
   // Add your initialization function here for the driver modules...
 
@@ -141,10 +143,7 @@ void main(void)
   while(true)
   {
    
-      temperature = GetTemperature();
-      ADC_enuGetRawValue(adc_value_ptr,100);
-      CMN_systemPrintf("Temp = %d\r\n",temperature);
-      Nop();
+      App_vidStart();
          
   }
 

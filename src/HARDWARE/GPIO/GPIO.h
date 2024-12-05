@@ -42,13 +42,6 @@
 
 typedef void(*LED_Callback)(void);
 
-typedef enum GPIO_state{
-    
-    GPIO_MEASURE_state = 0,
-    GPIO_IDLE_state
-    
-};
-
 /**********************************************************************************************************************/
 /* PUBLIC FUNCTION PROTOTYPES                                                                                         */
 /**********************************************************************************************************************/
@@ -64,8 +57,6 @@ void LED_Toggle();
 bool LED_SetInterruptHandler( LED_Callback Callback_function);
 
 void GPIO_Init(void);
-
-GPIO_state GPIO_GetState(void);
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 #endif /* TEMPLATE_H_ */

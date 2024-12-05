@@ -42,6 +42,7 @@
 #define CLOCK_FOSC_FREQUENCY_64MHZ                          64  //!< @attention Don't change this macro definition >
 
 
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /**
  * @brief This macro is used to set the clock frequency (Fosc)

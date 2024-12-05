@@ -68,7 +68,7 @@
 /* PUBLIC FUNCTION DEFINITIONS                                                                                        */
 /**********************************************************************************************************************/
 
-int16_t MCP9700_GetTemperature(void){
+int8_t MCP9700_GetTemperature(void){
     
     uint16_t adc_value;
     uint16_t * adc_value_ptr = &adc_value;
@@ -82,7 +82,7 @@ int16_t MCP9700_GetTemperature(void){
             return TEMP_MAX;
         } else {
             temperature = (int16_t)(TEMP_MIN + ((int32_t)(adc_value - ADC_MIN_VALUE) * (TEMP_MAX - TEMP_MIN)) / (ADC_MAX_VALUE - ADC_MIN_VALUE));
-            return temperature;
+            return (int8_t)temperature;
         }
     } else {
         return -128;

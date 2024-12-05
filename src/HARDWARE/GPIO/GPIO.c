@@ -83,7 +83,7 @@ void GPIO_ClearIntFlags(void){
 
 void LED_SetLow(void){
     
-    LATAbits.LATA4 = 0; 
+    LATAbits.LATA4 = 0;
 };
 
 
@@ -133,29 +133,15 @@ void GPIO_Init(void){
     //Interruption configuration
     PIE0bits.IOCIE = 1; 
     
-    //Set interrupt on falling and rising edge
-    IOCBPbits.IOCBP4 = 1;
-    IOCBNbits.IOCBN4 = 1;
-    
+    //Set interrupt on falling edge only
+    IOCBNbits.IOCBN4 = 1;  
     IOCBFbits.IOCBF4 = 0;
     
     LED_SetLow();  
     
 }
 
-GPIO_state GPIO_GetState(void){
-    
-    if (LATAbits.LATA4 == 0){
-        
-        return GPIO_IDLE_state;
-        
-    } else {
-        
-        return GPIO_MEASURE_state;
-        
-    }
-    
-}
+
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 

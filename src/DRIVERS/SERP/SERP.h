@@ -4,7 +4,7 @@
  * Project: Projet Esme
  *
  ***********************************************************************************************************************
- * @file      AppManager.h
+ * @file      SERP.h
  *
  * @author    <yourName>
  * @date      <date>
@@ -20,8 +20,8 @@
  *
  ***********************************************************************************************************************
  */
-#ifndef APPMANAGER_H_
-#define APPMANAGER_H_
+#ifndef SERP_H_
+#define SERP_H_
 
 
 /**********************************************************************************************************************/
@@ -34,37 +34,46 @@
 /* CONSTANTS, MACROS                                                                                                  */
 /**********************************************************************************************************************/
 
+
+
 /**********************************************************************************************************************/
 /* TYPES                                                                                                              */
 /**********************************************************************************************************************/
 
-typedef enum APPM_enuEvent
+//Type used to send data
+typedef enum SERP_tenuStatus
 {
-  eEVENT_NONE                            = 0,
-  eEVENT_BUTTON,
-  eEVENT_TIMER,
-  eEVENT_USART
-          
-}APPM_enuEvent;
+  SERP_eSTATUS_OK                                         = 0,
+  SERP_eSTATUS_NO_OK,
+  SERP_eSTATUS_NULL_BUFFER
+}SERP_tenuStatus;
 
-typedef enum APPM_enuStatus
+//Type used for the received data
+typedef enum SERP_tenuEvent
 {
-  sAPP_SUSPENDED                           = 0,
-  sAPP_RUNNING        
-          
-}APPM_enuStatus;
+  SERP_eEVENT_NONE                                         = 0,
+  SERP_eEVENT_START_MEASURE,
+  SERP_eEVENT_STOP_MEASURE,
+  SERP_eEVENT_FRAME_ERROR
+}SERP_tenuEvent;
 
+typedef void (*Receive_Callback)(SERP_tenuEvent event);
 
 /**********************************************************************************************************************/
 /* PUBLIC FUNCTION PROTOTYPES                                                                                         */
 /**********************************************************************************************************************/
 
-void App_Init(void);
+bool SERP_bSetInterruptHandler(const Receive_Callback Callback_function);
 
-void App_vidStart(void);
+void SERP_Init(void);
+
+SERP_tenuStatus SERP_SendTemperatureValue(int8_t temperature);
+
+SERP_tenuStatus SERP_SendLiveSign(void);
+
+SERP_tenuStatus SERP_SendCustomMessage(char * msg, uint16_t msg_size);
 
 /*--------------------------------------------------------------------------------------------------------------------*/
-#endif /*APPMANAGER_H*/
+#endif /* TEMPLATE_H_ */
 /*--------------------------------------------------------------------------------------------------------------------*/
-
 
