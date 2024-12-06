@@ -76,6 +76,7 @@ int8_t MCP9700_GetTemperature(void){
     
     if (ADC_enuGetRawValue(adc_value_ptr,ADC_TIMEOUT) == ADC_eSTATUS_OK){
             
+        //If the calculated value is outside the bounds, it will send the min or max value
         if (adc_value < ADC_MIN_VALUE){
             return TEMP_MIN;
         } else if (adc_value > ADC_MAX_VALUE){

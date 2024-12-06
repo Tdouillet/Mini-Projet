@@ -61,6 +61,7 @@ static LED_Callback LED_Callback_Function = NULL;
 
 static bool GPIO_Callback(void){
     
+    //Check that the interruption was caused by a change of the GPIO's state
     if (PIR0bits.IOCIF == 1){
         if (LED_Callback_Function != NULL){
             LED_Callback_Function();
@@ -108,7 +109,7 @@ void LED_Toggle(){
 bool LED_SetInterruptHandler(const LED_Callback Callback_function){
     
     bool handlerSet = false;
-    // On vérifie toujours les paramètres en entrée d'une fonction publique:
+    // Always check the parameters of a public function
     if(Callback_function != NULL)
     {
         LED_Callback_Function = (LED_Callback)Callback_function;

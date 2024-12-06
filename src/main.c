@@ -76,7 +76,7 @@
 /**********************************************************************************************************************/
 /* PRIVATE FUNCTIONS PROTOTYPES                                                                                       */
 /**********************************************************************************************************************/
-int16_t temperature = 0;
+
 
 
 /**********************************************************************************************************************/
@@ -95,10 +95,6 @@ void main(void)
 
   // Low-voltage programming enabled:
   #pragma config LVP = ON
-
-  //Variable declaration
-    uint16_t adc_value;
-    uint16_t * adc_value_ptr = &adc_value;
     
   // Enable the Global Interrupts
   ISR_GlobalInterruptEnable();

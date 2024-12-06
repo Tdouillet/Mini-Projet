@@ -54,7 +54,7 @@ typedef enum SERP_tenuEvent
   SERP_eEVENT_NONE                                         = 0,
   SERP_eEVENT_START_MEASURE,
   SERP_eEVENT_STOP_MEASURE,
-  SERP_eEVENT_FRAME_ERROR
+  SERP_eEVENT_PACKET_ERROR
 }SERP_tenuEvent;
 
 typedef void (*Receive_Callback)(SERP_tenuEvent event);
